@@ -3,38 +3,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="抱歉，您尚未发表任务"
-                android:visibility="invisible"/>
-
-        <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swip_refresh_onrelease"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view_onrelease"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/release_write_onrelease"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_add"/>
-
-    </android.support.design.widget.CoordinatorLayout>
 
 
 </RelativeLayout>
