@@ -12,7 +12,7 @@ public class DataGenerator {
 
     public static final int []mTabRes = new int[]{R.drawable.tab_home_selector,R.drawable.tab_release_selector,R.drawable.tab_notice_selector};
     public static final int []mTabResPressed = new int[]{R.drawable.tab_home_selected,R.drawable.tab_release_selected,R.drawable.tab_notice_selected};
-    public static final String []mTabTitle = new String[]{"首页", "发布", "通知"};
+    public static final String []mTabTitle = new String[]{"首页", "历史", "下载"};
 
     public static Fragment[] getFragments(){
         Fragment fragments[] = new Fragment[3];
