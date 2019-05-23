@@ -23,8 +23,6 @@
     <!-- 外存储读权限，构建语法需要用到此权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 配置权限，用来记录应用配置信息 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <!-- 手机定位信息，用来为语义等功能提供定位，提供更精准的服务 -->
     <!-- 定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -39,19 +37,19 @@
             android:theme="@style/AppTheme">
         <activity android:name="cn.aysst.www.doctor.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-                android:name="cn.aysst.www.doctor.MainActivity"
-                android:label="首页"
-                android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
+        <activity android:name="cn.aysst.www.doctor.MainActivity"
+                android:label="数控小医生"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name="cn.aysst.www.doctor.HomepageActivity"
@@ -59,8 +57,7 @@
         <activity android:name="cn.aysst.www.doctor.ForgotInfoActivity"/>
         <activity android:name="cn.aysst.www.doctor.ChangeEmailActivity"/>
         <activity android:name="cn.aysst.www.doctor.RegisterActivity"/>
-        <activity
-                android:name="cn.aysst.www.doctor.ReleaseTaskActivity"
+        <activity android:name="cn.aysst.www.doctor.ReleaseTaskActivity"
                 android:label=" "
                 android:theme="@style/AppTheme.Release">
         </activity>

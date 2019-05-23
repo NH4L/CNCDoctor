@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "cn.aysst.www.doctor"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.zhihu.android:matisse:0.4.3'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.leon:lfilepickerlibrary:1.7.0'
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

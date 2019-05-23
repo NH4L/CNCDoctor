@@ -146,22 +146,22 @@ public class MainActivity extends AppCompatActivity
 
 
         View header = navigationView.getHeaderView(0);
-        Intent intent = getIntent();
-        account = intent.getStringExtra("account");
-        user_json = httpPostUserinfoReq(account);
-        Log.d("user", user_json);
-        try {
-            JSONObject jsonObject = new JSONObject(user_json);
-            name = (String) jsonObject.getString("name");
-            email = (String) jsonObject.getString("email");
-            sex = (String)jsonObject.getString("sex");
-            money = (float) jsonObject.getDouble("money");
-            phone = (String)jsonObject.getString("phone");
-            signature = (String)jsonObject.getString("signature");
-            portraitAddr = (String)jsonObject.getString("portraitAddr");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        Intent intent = getIntent();
+//        account = intent.getStringExtra("account");
+//        user_json = httpPostUserinfoReq(account);
+//        Log.d("user", user_json);
+//        try {
+//            JSONObject jsonObject = new JSONObject(user_json);
+//            name = (String) jsonObject.getString("name");
+//            email = (String) jsonObject.getString("email");
+//            sex = (String)jsonObject.getString("sex");
+//            money = (float) jsonObject.getDouble("money");
+//            phone = (String)jsonObject.getString("phone");
+//            signature = (String)jsonObject.getString("signature");
+//            portraitAddr = (String)jsonObject.getString("portraitAddr");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         username = (TextView)header.findViewById(R.id.main_user_account);
@@ -171,27 +171,27 @@ public class MainActivity extends AppCompatActivity
 
         textSignature.setText(signature);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);//存储用户名
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", name);
-        editor.putString("email", email);
-        editor.putFloat("money", money);
+//        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);//存储用户名
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("name", name);
+//        editor.putString("email", email);
+//        editor.putFloat("money", money);
 //        editor.putString("sex", sex);
 //        editor.putString("phone", phone);
 //        editor.putString("signature", signature);
 
-        editor.commit();//提交修改
-
-        if (portraitAddr.equals("无")) {
-            portraitImage.setImageResource(R.drawable.people_fill);
-        } else {
-            new MyBitmapUtils().disPlay(portraitImage, portraitAddr);
-            //new showPortraitAsyncTask().execute(portraitAddr);
-        }
-
-        username.setOnClickListener(this);
-        textSignature.setOnClickListener(this);
-        portraitImage.setOnClickListener(this);
+//        editor.commit();//提交修改
+//
+//        if (portraitAddr.equals("无")) {
+//            portraitImage.setImageResource(R.drawable.people_fill);
+//        } else {
+//            new MyBitmapUtils().disPlay(portraitImage, portraitAddr);
+//            //new showPortraitAsyncTask().execute(portraitAddr);
+//        }
+//
+//        username.setOnClickListener(this);
+//        textSignature.setOnClickListener(this);
+//        portraitImage.setOnClickListener(this);
 
     }
 
