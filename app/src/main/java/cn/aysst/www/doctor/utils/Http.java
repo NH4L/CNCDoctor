@@ -1,8 +1,10 @@
 package cn.aysst.www.doctor.utils;
 
 import java.security.MessageDigest;
+import java.security.PublicKey;
 
 public class Http {
+    public static String TAG = "打印 TAG";
     public static String BASE_URL = "http://172.29.240.142:8080";
 //    public static String BASE_URL = "https://www.aysst.cn";
     //public static String BASE_IP = "10.11.12.10";
