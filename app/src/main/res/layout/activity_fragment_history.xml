@@ -1,8 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+    <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="抱歉，您还未有搜索历史"
+                android:visibility="invisible"/>
 
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swip_refresh_onhistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view_cnc_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
+
+
