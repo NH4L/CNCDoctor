@@ -18,12 +18,23 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="97" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="89" />
+                                                <entry key="scalingPercent" value="61" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,7 +44,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="D:\Android\projects\LoginApp\app\src\main\res\drawable\logo.jpg" />
+                                      <entry key="backgroundImage" value="D:\Android\projects\CNCdoctor\app\src\main\res\drawable\background.png" />
+                                      <entry key="foregroundImage" value="D:\Android\projects\CNCdoctor\app\src\main\res\drawable\icon.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

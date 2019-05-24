@@ -3,18 +3,24 @@ package cn.aysst.www.doctor.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.aysst.www.doctor.MainActivity;
 import cn.aysst.www.doctor.R;
 import cn.aysst.www.doctor.beans.CNCProblem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v7.widget.RecyclerView.NO_POSITION;
 
 
 /**
@@ -24,9 +30,9 @@ import java.util.List;
 public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.ViewHolder> {
     public final static int ITEM_TYPE_HEADER = 0;
     public final static int ITEM_TYPE_TEXT = 1;
-    private List<CNCProblem> cncList = new ArrayList<>();
+    public final List<CNCProblem> cncList = new ArrayList<>();
     private Context context;
-
+    private ViewHolder holder;
     public MyHistoryAdapter(Context context) {
         this.context = context;
     }
@@ -55,28 +61,20 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.View
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_layout_history, parent, false);
 
-        final ViewHolder holder = new ViewHolder(view);
+
+        holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 CNCProblem cnc = cncList.get(position);
-
                 Toast.makeText(context, cnc.getQuestion() + "  "  + position, Toast.LENGTH_SHORT).show();
-
-//                textView = (TextView) itemView.findViewById(R.id.history_question);
-//                itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                    }
-//                });
-//                Intent intent = new Intent(context, CncDetail.class);
-//                intent.putExtra("cnc_data", cnc.toString());
-//                context.startActivity(intent);
             }
+
         });
         return holder;
     }
+
 
 
 
@@ -103,8 +101,21 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.View
 
 
     public void addItem(CNCProblem item) {
-        cncList.add(item);
-        notifyDataSetChanged();
+        if (! cncList.contains(item)) {
+            cncList.add(item);
+            notifyDataSetChanged();
+        }
+    }
+    public void addFirstItem(CNCProblem item) {
+        if (! cncList.contains(item)) {
+            cncList.add(0, item);
+            notifyDataSetChanged();
+        }
+
+    }
+    public void removeItem(int position) {
+        cncList.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
