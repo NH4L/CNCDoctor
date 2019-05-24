@@ -31,6 +31,7 @@ public class LocalCacheUtils {
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file));
 
             return bitmap;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
