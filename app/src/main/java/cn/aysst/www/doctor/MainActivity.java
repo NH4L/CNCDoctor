@@ -60,9 +60,9 @@ import java.util.concurrent.TimeUnit;
 import static cn.aysst.www.doctor.HomepageActivity.getBitmapFromUri;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private TabLayout mTabLayout;
-    private Fragment []mFragmensts;
+    private Fragment[] mFragmensts;
     private TextView username, textSignature;
     private String account = "";
     private String name, email, phone, signature, sex, portraitAddr;
@@ -148,20 +148,21 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
 //        Intent intent = getIntent();
 //        account = intent.getStringExtra("account");
-//        user_json = httpPostUserinfoReq(account);
-//        Log.d("user", user_json);
-//        try {
-//            JSONObject jsonObject = new JSONObject(user_json);
-//            name = (String) jsonObject.getString("name");
-//            email = (String) jsonObject.getString("email");
-//            sex = (String)jsonObject.getString("sex");
-//            money = (float) jsonObject.getDouble("money");
-//            phone = (String)jsonObject.getString("phone");
-//            signature = (String)jsonObject.getString("signature");
-//            portraitAddr = (String)jsonObject.getString("portraitAddr");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        account = "lcy";
+        user_json = httpPostUserinfoReq(account);
+        Log.d("user", user_json);
+        try {
+            JSONObject jsonObject = new JSONObject(user_json);
+            name = (String) jsonObject.getString("name");
+            email = (String) jsonObject.getString("email");
+            sex = (String)jsonObject.getString("sex");
+            money = (float) jsonObject.getDouble("money");
+            phone = (String)jsonObject.getString("phone");
+            signature = (String)jsonObject.getString("signature");
+            portraitAddr = (String)jsonObject.getString("portraitAddr");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         username = (TextView)header.findViewById(R.id.main_user_account);
@@ -171,27 +172,27 @@ public class MainActivity extends AppCompatActivity
 
         textSignature.setText(signature);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);//存储用户名
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("name", name);
-//        editor.putString("email", email);
-//        editor.putFloat("money", money);
-//        editor.putString("sex", sex);
-//        editor.putString("phone", phone);
-//        editor.putString("signature", signature);
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);//存储用户名
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("name", name);
+        editor.putString("email", email);
+        editor.putFloat("money", money);
+        editor.putString("sex", sex);
+        editor.putString("phone", phone);
+        editor.putString("signature", signature);
 
-//        editor.commit();//提交修改
-//
-//        if (portraitAddr.equals("无")) {
-//            portraitImage.setImageResource(R.drawable.people_fill);
-//        } else {
-//            new MyBitmapUtils().disPlay(portraitImage, portraitAddr);
-//            //new showPortraitAsyncTask().execute(portraitAddr);
-//        }
-//
-//        username.setOnClickListener(this);
-//        textSignature.setOnClickListener(this);
-//        portraitImage.setOnClickListener(this);
+        editor.commit();//提交修改
+
+        if (portraitAddr.equals("无")) {
+            portraitImage.setImageResource(R.drawable.people_fill);
+        } else {
+            new MyBitmapUtils().disPlay(portraitImage, portraitAddr);
+            //new showPortraitAsyncTask().execute(portraitAddr);
+        }
+
+        username.setOnClickListener(this);
+        textSignature.setOnClickListener(this);
+        portraitImage.setOnClickListener(this);
 
     }
 
@@ -420,27 +421,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        // This activity implements OnMenuItemClickListener
-        popup.setOnMenuItemClickListener(this);
-        popup.inflate(R.menu.task_popup_menu);
-        popup.show();
-    }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.report:
-                Toast.makeText(MainActivity.this,"举报",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.block:
-                Toast.makeText(MainActivity.this,"屏蔽",Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return false;
-        }
-    }
 
     @Override
     public void onResume() {
