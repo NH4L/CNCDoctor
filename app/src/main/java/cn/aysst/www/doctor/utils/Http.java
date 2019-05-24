@@ -5,7 +5,7 @@ import java.security.PublicKey;
 
 public class Http {
     public static String TAG = "打印 TAG";
-    public static String BASE_URL = "http://172.29.240.142:8080";
+    public static String BASE_URL = "http://192.168.43.197:8080";
 //    public static String BASE_URL = "https://www.aysst.cn";
     //public static String BASE_IP = "10.11.12.10";
     public static String BASE_IP = "129.211.11.232";
@@ -36,6 +36,23 @@ public class Http {
         }
     }
 
-
+    public static String cutStringTitle(String string) {
+        if (string.length() > 22)
+            return string.substring(0, 22) + "...";
+        else
+            return string;
+    }
+    public static String cutStringContent(String string) {
+        if (string.length() > 54)
+            return string.substring(0, 54) + "...";
+        else
+            return string;
+    }
+    public static String cutStringSmall(String string) {
+        if (string.length() > 5)
+            return string.substring(0, 5) + "...";
+        else
+            return string;
+    }
 
 }
