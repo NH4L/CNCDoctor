@@ -21,7 +21,7 @@ public class MyBitmapUtils {
     }
 
     public void disPlay(CircleImageView ivPic, String url) {
-//        ivPic.setImageResource(R.drawable.apple);
+        ivPic.setImageResource(R.drawable.background);
         Bitmap bitmap;
         //内存缓存
         bitmap=mMemoryCacheUtils.getBitmapFromMemory(url);
@@ -39,15 +39,13 @@ public class MyBitmapUtils {
             //从本地获取图片后,保存至内存中
             mMemoryCacheUtils.setBitmapToMemory(url,bitmap);
             return;
-        } else {
-            System.out.println("只能从网络加载图片啦.....");
         }
         //网络缓存
-        mNetCacheUtils.getBitmapFromNet(ivPic, url);
+        mNetCacheUtils.getBitmapFromNet(ivPic,url);
     }
 
     public void disPlay(ImageView ivPic, String url) {
-//        ivPic.setImageResource(R.drawable.apple);
+        ivPic.setImageResource(R.drawable.background);
         Bitmap bitmap;
         //内存缓存
         bitmap=mMemoryCacheUtils.getBitmapFromMemory(url);
