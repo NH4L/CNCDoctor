@@ -1,5 +1,7 @@
 package cn.aysst.www.doctor.beans;
 
+import android.util.Log;
+
 public class CNCProblem {
 
     private String brand;
@@ -43,5 +45,17 @@ public class CNCProblem {
         return solution;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CNCProblem){
+            CNCProblem cnc = (CNCProblem) obj;
+            if (cnc.brand.equals(brand) && cnc.type.equals(type) &&
+                    cnc.question.equals(question) && cnc.solution.equals(solution) && cnc.questype.equals(questype)) {
+                Log.d("重复","return true " + cnc.question);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
