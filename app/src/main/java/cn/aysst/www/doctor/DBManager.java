@@ -3,6 +3,7 @@ package cn.aysst.www.doctor;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import cn.aysst.www.doctor.beans.UsersInfo;
 
 import java.util.ArrayList;
 import java.util.List;

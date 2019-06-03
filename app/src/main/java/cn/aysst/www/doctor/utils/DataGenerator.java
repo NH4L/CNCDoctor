@@ -1,4 +1,4 @@
-package cn.aysst.www.doctor;
+package cn.aysst.www.doctor.utils;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.aysst.www.doctor.R;
 import cn.aysst.www.doctor.fragment.*;
 
 public class DataGenerator {
 
-    public static final int []mTabRes = new int[]{R.drawable.tab_home_selector,R.drawable.tab_release_selector,R.drawable.tab_notice_selector};
-    public static final int []mTabResPressed = new int[]{R.drawable.tab_home_selected,R.drawable.tab_release_selected,R.drawable.tab_notice_selected};
+    public static final int []mTabRes = new int[]{R.drawable.home_1,R.drawable.history_1,R.drawable.download_1};
+    public static final int []mTabResPressed = new int[]{R.drawable.home_2,R.drawable.history_2,R.drawable.dowload_2};
     public static final String []mTabTitle = new String[]{"首页", "历史", "下载"};
 
     public static Fragment[] getFragments(){

@@ -1,7 +1,423 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_accquery"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                android:layout_height="?attr/actionBarSize"
+                android:background="#fff"
+                android:gravity="center"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-</RelativeLayout>
+            <com.arlib.floatingsearchview.FloatingSearchView
+                    android:id="@+id/floatingsearch"
+                    android:layout_width="315dp"
+                    android:layout_height="match_parent"
+                    app:floatingSearch_close_search_on_keyboard_dismiss="true"
+                    app:floatingSearch_leftActionMode="showSearch"
+                    app:floatingSearch_searchHint="请输入搜索的内容...."
+                    app:floatingSearch_showSearchKey="true"
+                    app:floatingSearch_showVoiceInput="true"/>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="10dp">
+
+                <ImageView
+                        android:id="@+id/voice"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_action_voice_search" />
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="精准查询"
+                    android:textSize="30dp"
+                    android:textColor="#000"
+                    android:layout_marginLeft="120dp"
+                    android:gravity="center"/>
+        </android.support.v7.widget.Toolbar>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/t"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f2f0fa"
+                    android:orientation="vertical">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入数控机床的品牌"
+                        android:maxLines="1"
+                        android:maxLength="100"
+                        android:id="@+id/inquire_brand"
+                        app:met_floatingLabel="highlight"
+                        app:met_floatingLabelText="数控机床品牌"
+
+                />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f2f0fa"
+                    android:orientation="horizontal">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入该机床的操作系统"
+                        android:maxLines="1"
+                        android:maxLength="100"
+                        android:id="@+id/inquire_type"
+                        app:met_floatingLabel="highlight"
+                        app:met_floatingLabelText="操作系统"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp">
+
+            <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="#f2f0fa"
+               android:orientation="horizontal">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入发生故障的类型"
+                    android:maxLines="1"
+                    android:maxLength="100"
+                    android:id="@+id/inquire_questype"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelText="故障类型"
+                    />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="#f2f0fa"
+                    android:orientation="vertical">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入对应的故障代码"
+                        android:maxLines="1"
+                        android:maxLength="100"
+                        android:id="@+id/inquire_id"
+                        app:met_floatingLabel="highlight"
+                        app:met_floatingLabelText="故障代码" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <Button
+                android:id="@+id/btn_query_by_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+
+                android:background="@drawable/button"
+                android:clickable="true"
+                android:text="提交查询"
+                android:textColor="#f2f0fa"
+                android:textSize="18sp" />
+
+        <GridView
+                android:id="@id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:horizontalSpacing="0dp"
+                android:numColumns="4"
+                android:verticalSpacing="10dp">
+        </GridView>
+
+        <TextView
+                android:id="@+id/t4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="30dp"
+                android:text="最新博文"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        <TextView
+                android:id="@+id/change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="-25dp"
+                android:layout_marginLeft="300dp"
+                android:text="换一换"
+                android:textSize="15dp"
+        />
+        <ScrollView android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+                android:id="@+id/t6"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/content_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="20dp"
+                        android:textColor="#000"
+                        android:text="Haiwell海为在UV涂装生产总线控制中的应用" />
+
+                <TextView
+                        android:id="@+id/author_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv2"
+                        android:text="Haiwell海为" />
+                <TextView
+                        android:id="@+id/date_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv2"
+                        android:layout_toRightOf="@id/author_tv2"
+                        android:text="2019-05-10" />
+                <TextView
+                        android:id="@+id/source_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv2"
+                        android:layout_toRightOf="@id/date_tv2"
+                        android:text="自动化网" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t7"
+                android:layout_below="@id/t6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                <TextView
+                        android:id="@+id/content_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="20dp"
+                        android:textColor="#000"
+                        android:text="皮尔磁：安全小百科之安全点动知多少" />
+
+                <TextView
+                        android:id="@+id/author_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv"
+                        android:text="安全点动" />
+                <TextView
+                        android:id="@+id/date_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="37dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv"
+                        android:layout_toRightOf="@id/author_tv"
+                        android:text="2019-05-08" />
+                <TextView
+                        android:id="@+id/source_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="52dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv"
+                        android:layout_toRightOf="@id/date_tv"
+                        android:text="自动化网" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
+                android:layout_below="@id/t7">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+            >
+                <TextView
+                        android:id="@+id/content_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="20dp"
+                        android:textColor="#000"
+                        android:text="发那科 0i系统加工中心刀库控制功能" />
+
+                <TextView
+                        android:id="@+id/author_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv3"
+                        android:text="发那科" />
+
+                <TextView
+                        android:id="@+id/date_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_marginLeft="51dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv3"
+                        android:layout_toRightOf="@id/author_tv3"
+                        android:text="2019-04-26" />
+
+                <TextView
+                        android:id="@+id/source_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="52dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv3"
+                        android:layout_toRightOf="@id/date_tv3"
+                        android:text="伯特利数控" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:id="@+id/t9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/t8">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                <TextView
+                        android:id="@+id/content_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="20dp"
+                        android:textColor="#000"
+                        android:text="加工中心三菱系统的基本操作" />
+
+                <TextView
+                        android:id="@+id/author_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv5"
+                        android:text="三菱系统" />
+                <TextView
+                        android:id="@+id/date_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv5"
+                        android:layout_toRightOf="@id/author_tv5"
+                        android:text="2019-04-24" />
+                <TextView
+                        android:id="@+id/source_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="54dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/content_tv5"
+                        android:layout_toRightOf="@id/date_tv5"
+                        android:text="伯特利数控" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

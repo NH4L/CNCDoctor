@@ -5,11 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.os.Environment;
+import android.util.Log;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okio.BufferedSink;
+import okio.Okio;
+import okio.Sink;
 
 
 public class DownloadUtil {
@@ -29,17 +34,18 @@ public class DownloadUtil {
 
     /**
      * @param url          下载连接
-     * @param destFileDir  下载的文件储存目录
-     * @param destFileName 下载文件名称
      * @param listener     下载监听
      */
-    public void download(final String url, final String destFileDir, final String destFileName, final OnDownloadListener listener) {
+    public void download(final String url, final OnDownloadListener listener) {
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/数控小医生/files/";
+
         Request request = new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 // 下载失败监听回调
                 listener.onDownloadFailed(e);
+                Log.i("DOWNLOAD","download failed");
             }
 
             @Override
@@ -49,11 +55,11 @@ public class DownloadUtil {
                 int len = 0;
                 FileOutputStream fos = null;
                 // 储存下载文件的目录
-                File dir = new File(destFileDir);
+                File dir = new File(path);
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
-                File file = new File(dir, destFileName);
+                File file = new File(path, url.substring(url.lastIndexOf("/") + 1));
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
@@ -85,6 +91,7 @@ public class DownloadUtil {
                 }
             }
         });
+
     }
 
     public interface OnDownloadListener {

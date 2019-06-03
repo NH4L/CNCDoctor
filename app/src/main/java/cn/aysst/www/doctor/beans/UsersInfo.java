@@ -1,4 +1,4 @@
-package cn.aysst.www.doctor;
+package cn.aysst.www.doctor.beans;
 
 
 public class UsersInfo {

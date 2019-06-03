@@ -51,7 +51,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     PermissionsUtils.IPermissionsResult permissionsResult = new PermissionsUtils.IPermissionsResult() {
         @Override
         public void passPermissons() {
-            Toast.makeText(LoginActivity.this, "权限通过!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LoginActivity.this, "权限通过!", Toast.LENGTH_SHORT).show();
         }
 
         @Override

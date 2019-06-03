@@ -3,24 +3,18 @@ package cn.aysst.www.doctor.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.aysst.www.doctor.MainActivity;
 import cn.aysst.www.doctor.R;
+import cn.aysst.www.doctor.ResultDetailIdActivity;
 import cn.aysst.www.doctor.beans.CNCProblem;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.support.v7.widget.RecyclerView.NO_POSITION;
 
 
 /**
@@ -58,20 +52,9 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.View
         if(context == null){
             context = parent.getContext();
         }
-        View view;
-        view = LayoutInflater.from(context).inflate(R.layout.item_layout_history, parent, false);
 
-
+        View view = LayoutInflater.from(context).inflate(R.layout.item_layout_history, parent, false);
         holder = new ViewHolder(view);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                CNCProblem cnc = cncList.get(position);
-                Toast.makeText(context, cnc.getQuestion() + "  "  + position, Toast.LENGTH_SHORT).show();
-            }
-
-        });
         return holder;
     }
 
@@ -85,6 +68,17 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.View
         holder.brand_text.setText(cnc.getBrand());
         holder.type_text.setText(cnc.getType());
         holder.solution_text.setText(cnc.getSolution());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CNCProblem cnc = cncList.get(position);
+//                Toast.makeText(context, cnc.getQuestion() + "  "  + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ResultDetailIdActivity.class);
+                intent.putExtra(SearchAdapter.SEARCH_BY_ID, cnc);
+                context.startActivity(intent);
+            }
+
+        });
     }
 
     @Override

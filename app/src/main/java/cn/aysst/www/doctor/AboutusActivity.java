@@ -11,7 +11,7 @@ public class AboutusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
 
-        getSupportActionBar().setTitle("智集APP");
+        getSupportActionBar().setTitle("数控小医生");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override

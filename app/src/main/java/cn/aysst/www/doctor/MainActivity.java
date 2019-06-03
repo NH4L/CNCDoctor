@@ -34,14 +34,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.aysst.www.doctor.utils.DataGenerator;
 import cn.aysst.www.doctor.utils.Http;
 import cn.aysst.www.doctor.utils.MyBitmapUtils;
-import com.leon.lfilepickerlibrary.LFilePicker;
-import com.leon.lfilepickerlibrary.utils.Constant;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
+import com.joanzapata.pdfview.PDFView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -60,7 +56,7 @@ import java.util.concurrent.TimeUnit;
 import static cn.aysst.www.doctor.HomepageActivity.getBitmapFromUri;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     private TabLayout mTabLayout;
     private Fragment[] mFragmensts;
     private TextView username, textSignature;
@@ -78,10 +74,15 @@ public class MainActivity extends AppCompatActivity
     private String result = "";
     private Bitmap portraitBit = null;
 
+    private String path;
+    private static final int FILE_SELECT_CODE=1;
+
     private static final int REQUEST_WE_STORAGE_PER = 100;
     private static final int REQUEST_RE_STORAGE_PER = 101;
 
     private static final int isChangePortrait = 0;
+
+    private PDFView pdfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +100,22 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         initView(navigationView);
 
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        pdfView = (PDFView) findViewById(R.id.pdfView);
+
+    }
+
+    private void displayFromFile(File file){
+        pdfView.fromFile(file)
+                .defaultPage(6)
+                .showMinimap(false)
+                .swipeVertical(false)
+                .enableSwipe(true)
+                .load();
     }
 
     private void initView(NavigationView navigationView) {
@@ -217,28 +230,42 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Log.d(Http.TAG, id + "");
 
-        if (id == R.id.nav_gallery) {
-            if (requestPer()){
-                openGallery();
-            }
+        if (id == R.id.nav_shoucang) {
+            openShoucang();
         } else if (id == R.id.nav_file) {
             if (requestPer()){
                 openFile();
             }
-        } else if (id == R.id.nav_record) {
-            if (requestPer()){
-                openRecord();
-            }
         } else if (id == R.id.nav_aboutAs) {
             goAboutUs();
-        } else if (id == R.id.nav_money){
+        } else if (id == R.id.nav_news){
             goRecharge();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        // This activity implements OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.history_remove_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.removeItem:
+                Toast.makeText(MainActivity.this,"已删除该记录",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
     }
 
     /**
@@ -287,10 +314,10 @@ public class MainActivity extends AppCompatActivity
                 showFragment("fragment_home", mFragmensts[0]);
                 break;
             case 1:
-                showFragment("fragment_release", mFragmensts[1]);
+                showFragment("fragment_history", mFragmensts[1]);
                 break;
             case 2:
-                showFragment("fragment_notice", mFragmensts[2]);
+                showFragment("fragment_download", mFragmensts[2]);
                 break;
         }
     }
@@ -373,6 +400,9 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 break;
+            case FILE_SELECT_CODE:
+                Uri uri = data.getData();
+                path = uri.getPath();
         }
     }
 
@@ -444,35 +474,28 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 
-    private void openGallery(){
-        Matisse.from(MainActivity.this)
-                .choose(MimeType.allOf())//图片类型
-                .countable(true)//true:选中后显示数字;false:选中后显示对号
-                .maxSelectable(0)//可选的最大数
-                .capture(false)//选择照片时，是否显示拍照
-                .captureStrategy(new CaptureStrategy(true, "cn.aysst.www.doctor.fileprovider"))//参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
-                .imageEngine(new GlideEngine())//图片加载引擎
-                .forResult(1);
+    private void openShoucang(){
+        Intent intent = new Intent(MainActivity.this, CollectActivity.class);
+        startActivity(intent);
     }
 
     private void openFile(){
-        new LFilePicker()
-                .withActivity(MainActivity.this)
-                .withRequestCode(2)
-                .withIconStyle(Constant.ICON_STYLE_YELLOW)
-                .withMutilyMode(false)
-                .withTitle("选择文件")
-                .withBackgroundColor("#FFFFFF")
-                .withTitleColor("#000000")
-                .withFileFilter(new String[]{".wav",".aif",".au",".mp3",".ram",".wma",".mmf",".amr",".aac",".flac"})
-                .withBackIcon(Constant.BACKICON_STYLEONE)
-                .start();
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, FILE_SELECT_CODE);
+        if(path!=null) {
+            File file = new File(path);
+            if(file.exists())
+            {
+                pdfView.setVisibility(PDFView.VISIBLE);
+                displayFromFile(file);
+            }
+        }
+
+        pdfView.setVisibility(PDFView.GONE);
     }
 
-    private void openRecord(){
-        Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        startActivity(intent);
-    }
 
     private void goAboutUs(){
         Intent intent = new Intent(MainActivity.this,AboutusActivity.class);

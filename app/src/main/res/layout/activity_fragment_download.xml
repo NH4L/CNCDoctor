@@ -1,24 +1,50 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <ProgressBar
+            android:id="@+id/progressbar_download"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:max="100"
+            android:progress="50" />
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_accquery"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fff"
+            android:gravity="center">
+
+        <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/brand"
+                android:entries="@array/brand">
+
+        </Spinner>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="文档下载"
+                  android:layout_marginLeft="70dp"
+                  android:textSize="20dp"
+                  android:textColor="#000"
+        />
 
 
+    </android.support.v7.widget.Toolbar>
+    <GridView
+            android:id="@+id/GridView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="-3dp"/>
+</LinearLayout>
 
-    </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/pull_up_onnotice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_pull"/>
-
-</android.support.design.widget.CoordinatorLayout>

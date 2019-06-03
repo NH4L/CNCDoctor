@@ -67,7 +67,6 @@ public class FragmentHistory extends Fragment {
         //设置LayoutManager和Adapter
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
 		return view;
 	}
 
@@ -127,17 +126,17 @@ public class FragmentHistory extends Fragment {
                             String solution = object.getString("solution");
                             String type = object.getString("type");
 
-                            question = Http.cutStringTitle(question);
-                            solution = Http.cutStringContent(solution);
-                            brand = Http.cutStringSmall(brand);
-
                             CNCProblem cncProblem = new CNCProblem();
                             cncProblem.setBrand(brand);
-                            cncProblem.setQuestion(question);
+                            cncProblem.setQuestion(Http.cutStringTitle(question));
                             cncProblem.setQuestype(questype);
-                            cncProblem.setType(type);
-                            cncProblem.setSolution(solution);
+                            cncProblem.setType(Http.cutStringSmall(type));
+                            cncProblem.setTypeDetail(type);
+                            cncProblem.setSolution(Http.cutStringContent(solution));
+                            cncProblem.setSolutionDetail(solution);
+//                            cncProblem.setQuestion(question);
                             adapter.addItem(cncProblem);
+
                         }
                     }
 
@@ -202,10 +201,6 @@ public class FragmentHistory extends Fragment {
                 }
             }
         }
-    }
-
-    private void parseHistoryJson(String result) {
-
     }
 
     private String httpPostGetHistoryReq() {

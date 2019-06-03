@@ -38,12 +38,12 @@ public class PermissionsUtils {
         return permissionsUtils;
     }
 
-    public void chekPermissions(Activity context, String[] permissions, @NonNull IPermissionsResult permissionsResult) {
+    public boolean chekPermissions(Activity context, String[] permissions, @NonNull IPermissionsResult permissionsResult) {
         mPermissionsResult = permissionsResult;
 
         if (Build.VERSION.SDK_INT < 23) {//6.0才用动态权限
             permissionsResult.passPermissons();
-            return;
+            return false;
         }
 
         //创建一个mPermissionList，逐个判断哪些权限未授予，未授予的权限存储到mPerrrmissionList中
@@ -61,10 +61,10 @@ public class PermissionsUtils {
         } else {
             //说明权限都已经通过，可以做你想做的事情去
             permissionsResult.passPermissons();
-            return;
+            return true;
         }
 
-
+        return false;
     }
 
     //请求权限后回调的方法

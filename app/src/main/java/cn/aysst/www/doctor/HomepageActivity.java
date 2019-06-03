@@ -61,12 +61,10 @@ import static cn.aysst.www.doctor.utils.Http.BASE_URL;
 
 public class HomepageActivity extends AppCompatActivity implements View.OnClickListener, EditDialogFragment.NoticeDialogListener{
     private CircleImageView circleImageView;
-    private TextView userName, userSignature, userGold;
+    private TextView userName, userSignature;
     private TextView myMailText;
     private TextView myPhoneText;
     private TextView mySexText;
-    private TextView myReleaseText;
-    private TextView myAnswerText;
     private TextView showMailView;
     private TextView showPhoneView;
     private TextView showSexView;
@@ -120,9 +118,6 @@ public class HomepageActivity extends AppCompatActivity implements View.OnClickL
         circleImageView = (CircleImageView)findViewById(R.id.portrait_onhomepage);
         userName = (TextView) findViewById(R.id.user_name_onhomepage);
         userSignature = (TextView)findViewById(R.id.user_signature_onhomepage);
-        userGold = (TextView)findViewById(R.id.user_gold_onhomepage);
-        myReleaseText = (TextView)findViewById(R.id.my_release_onhomepage);
-        myAnswerText = (TextView)findViewById(R.id.my_answer_onhomepage);
 
         String user_json = httpPostUserInfoReq(name);
         Log.d("user", user_json);
@@ -160,7 +155,6 @@ public class HomepageActivity extends AppCompatActivity implements View.OnClickL
 
         userName.setText(name);
         userSignature.setText(signature);
-        userGold.setText(money + " 金币");
         showMailView.setText(email);
         showPhoneView.setText(phone);
         showSexView.setText(sex);
@@ -172,10 +166,7 @@ public class HomepageActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.my_mail_layout).setOnClickListener(this);
         findViewById(R.id.my_phone_layout).setOnClickListener(this);
         findViewById(R.id.my_sex_layout).setOnClickListener(this);
-        findViewById(R.id.my_release_layout).setOnClickListener(this);
-        findViewById(R.id.my_answer_layout).setOnClickListener(this);
         findViewById(R.id.my_signature_layout).setOnClickListener(this);
-        findViewById(R.id.go_attend_on_homepage).setOnClickListener(this);
         ((Button)findViewById(R.id.btn_logout)).setOnClickListener(this);
 
         getSupportActionBar().setTitle("个人信息");
@@ -248,21 +239,12 @@ public class HomepageActivity extends AppCompatActivity implements View.OnClickL
                 bottomDialog.setContentView(outerView1);
                 bottomDialog.show();//显示对话框
                 break;
-            case R.id.my_release_layout:
-                break;
-            case R.id.my_answer_layout:
-                break;
             case R.id.portrait_onhomepage:
                 if (openGallary()){
                     break;
                 }else {
                     return;
                 }
-            case R.id.go_attend_on_homepage:
-                //跳转到签到活动
-                Intent intent1 = new Intent(HomepageActivity.this,AttendActivity.class);
-                startActivity(intent1);
-                break;
             case R.id.btn_logout:
                 finish();
                 Intent intent2 = new Intent(HomepageActivity.this,LoginActivity.class);

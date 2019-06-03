@@ -33,7 +33,9 @@
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@color/colorPrimaryDark"></LinearLayout>
+            android:background="@color/colorPrimaryDark">
+
+    </LinearLayout>
 
     <LinearLayout
             android:orientation="horizontal"
@@ -50,9 +52,9 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="XX省XX市XX大学"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
-                android:text="常州市新北区晋陵北路200号"
                 android:textSize="18dp"/>
     </LinearLayout>
 
@@ -97,5 +99,18 @@
                 android:text="18952086032"
                 android:textSize="18dp"/>
     </LinearLayout>
-
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimaryDark">
+    </LinearLayout>
+    <TextView
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系我们：XXXXXX@qq.com"/>
 </LinearLayout>

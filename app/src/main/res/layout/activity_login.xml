@@ -8,9 +8,17 @@
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/sign_in_layout"
-            android:scaleType="fitXY"
+
+            android:layout_marginLeft="-100dp"
+            android:layout_marginTop="120dp"
             android:src="@drawable/signup"/>
+
+    <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="80dp"
+            android:src="@drawable/icon"/>
 
     <LinearLayout
             android:id="@+id/sign_in_layout"
@@ -121,6 +129,13 @@
             android:textColor="#639abf"
             android:textSize="16sp"/>
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="580dp"
+            android:layout_marginLeft="90dp"
+            android:text="Supported by 数控小医生 Team"/>
+
     <cn.aysst.www.doctor.TransitionView
             android:id="@+id/ani_view"
             android:layout_width="match_parent"
@@ -130,112 +145,3 @@
 </RelativeLayout>
 
 
-
-
-
-        <!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical"-->
-    <!--android:gravity="center"-->
-    <!--tools:context="collectorr.LoginActivity">-->
-
-    <!--<View-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:focusableInTouchMode="true"/>-->
-    <!--<LinearLayout-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:orientation="vertical"-->
-        <!--android:gravity="center"-->
-        <!--android:background="@drawable/layout_border">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="300dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="账号(邮箱):"-->
-                <!--android:textColor="@color/black"-->
-                <!--android:textSize="14sp" />-->
-
-            <!--<EditText-->
-                <!--android:id="@+id/edit_account"-->
-                <!--android:textColor="@color/black"-->
-                <!--android:textSize="14sp"-->
-                <!--android:layout_width="180dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:singleLine="true" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="300dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:orientation="horizontal">-->
-            <!--<TextView-->
-                <!--android:layout_width="80dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="密码:"-->
-                <!--android:textSize="14sp"-->
-                <!--android:textColor="@color/black"/>-->
-            <!--<EditText-->
-                <!--android:id="@+id/edit_password"-->
-                <!--android:textSize="14sp"-->
-                <!--android:textColor="@color/black"-->
-                <!--android:layout_width="180dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:password="true"-->
-                <!--android:singleLine="true"-->
-                <!--android:maxLength="16"/>-->
-            <!--<ImageButton-->
-                <!--android:id="@+id/btn_openpwd"-->
-                <!--android:layout_gravity="center|right"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:background="@drawable/visible"/>-->
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:orientation="horizontal">-->
-        <!--<Button-->
-            <!--android:id="@+id/btn_login"-->
-            <!--android:text="登陆"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:textSize="14sp"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:background="@drawable/layout_border"/>-->
-        <!--<Button-->
-            <!--android:layout_marginLeft="180dp"-->
-            <!--android:id="@+id/btn_register"-->
-            <!--android:text="注册"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:textSize="14sp"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:background="@drawable/layout_border"/>-->
-    <!--</LinearLayout>-->
-    <!--<LinearLayout-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="25dp">-->
-        <!--<TextView-->
-            <!--android:id="@+id/text_msg"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="25dp"-->
-            <!--android:text="忘记密码？"-->
-            <!--android:textColor="@color/black"/>-->
-    <!--</LinearLayout>-->
-<!--</LinearLayout>-->

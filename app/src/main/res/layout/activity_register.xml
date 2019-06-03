@@ -12,7 +12,6 @@
             android:layout_above="@+id/log_in_layout"
             android:scaleType="fitXY"
             android:src="@drawable/signin"/>
-
     <LinearLayout
             android:id="@+id/log_in_layout"
             android:orientation="horizontal"
@@ -138,7 +137,12 @@
             android:text="@string/sign_in"
             android:textColor="@android:color/white"/>
 
-
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="580dp"
+            android:layout_marginLeft="90dp"
+            android:text="Supported by 数控小医生 Team"/>
 
 </RelativeLayout>
 

@@ -1,182 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideInset">
 
-    <android.support.v7.widget.CardView
+
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            app:cardCornerRadius="@dimen/cardview_default_radius"
-            app:cardElevation="@dimen/cardview_default_elevation"
-            app:cardBackgroundColor="@color/colorAccent">
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="match_parent" >
+
+        <!--<android.support.v7.widget.Toolbar-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAlignment="center">-->
+
             <TextView
-                    android:id="@+id/yue_on_recharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="数控新闻"
+                    android:textSize="33dp"
+                    android:textColor="#000"
+                    android:layout_marginLeft="120dp"
+                    android:textAlignment="center" />
+
+
+        <!--</android.support.v7.widget.Toolbar>-->
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/layout_border">
+
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/news_1"
+                    android:id="@+id/i1"/>
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:text="余额"
-                    android:textSize="25sp"
-                    android:textColor="#fff"/>
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
-                <TextView
-                        android:id="@+id/qian_on_recharge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="36dp"
-                        android:layout_marginRight="20dp"
-                        android:text="￥"
-                        android:textSize="40sp"
-                        android:textColor="#fff"/>
-                <TextView
-                        android:id="@+id/show_gold_on_recharge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="38sp"
-                        android:textColor="#fff"/>
-            </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                    android:id="@+id/ti1"
+                    android:text="数控车床在加工时切削力小是怎么回事"
+                    android:textColor="#000"
+                    android:textSize="25dp"
+                    android:layout_toRightOf="@id/i1"/>
 
-    <android.support.v7.widget.CardView
-            android:id="@+id/set_num_on_recharge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:clickable="true"
-            app:cardCornerRadius="@dimen/cardview_default_radius"
-            app:cardElevation="@dimen/cardview_default_elevation">
-        <LinearLayout
-                android:orientation="horizontal"
+            <TextView
+                    android:id="@+id/content1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/ti1"
+                    android:layout_toRightOf="@id/i1"
+                    android:text="就比如周氏的数控车床在加工时切削速度是可以调..."
+                    android:lineSpacingExtra="5dp"
+            />
+            <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_below="@id/content1"
+                    android:layout_toRightOf="@id/i1"
+                    android:text="2019-05-08"
+                    android:lineSpacingExtra="5dp"
+            />
+
+        </RelativeLayout>
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:text="自定义钱数"/>
-            <TextView
-                    android:id="@+id/show_num_on_recharge"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_centerInParent="true"
-                    android:textSize="18sp"
-                    android:text=""/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                android:layout_height="180dp"
+                android:background="@drawable/layout_border">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginBottom="25dp"
-            android:textSize="20sp"
-            android:text="支付方式"/>
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/new_2"
+                    android:id="@+id/i2"/>
 
-    <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-        <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
-                android:src="@drawable/zhifubao"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
-                android:layout_toLeftOf="@+id/zhifubao_on_recharge"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:text="支付宝"/>
-        <RadioButton
-                android:id="@+id/zhifubao_on_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="45dp"
-                android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimaryDark">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ti2"
+                    android:text="东莞周氏数控参展第23届厦门数控机床展览会圆满落幕"
+                    android:textColor="#000"
+                    android:textSize="25dp"
+                    android:layout_toRightOf="@id/i2"/>
+
+            <TextView
+                    android:id="@+id/content2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/ti2"
+                    android:layout_toRightOf="@id/i2"
+                    android:text="东莞周氏数控参展第23届厦门数控机床展览会圆满落幕机床..."
+                    android:lineSpacingExtra="5dp"
+            />
+            <TextView
+                    android:id="@+id/date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/content2"
+                    android:layout_toRightOf="@id/i2"
+                    android:text="2019-04-17"
+                    android:lineSpacingExtra="5dp"
+            />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/layout_border">
+
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/news_3"
+                    android:id="@+id/i3"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ti3"
+                    android:text="数控车床故障的正确处理步骤"
+                    android:textColor="#000"
+                    android:textSize="25dp"
+                    android:layout_toRightOf="@id/i3"/>
+
+            <TextView
+                    android:id="@+id/content3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/ti3"
+                    android:layout_toRightOf="@id/i3"
+                    android:text="不同牌子机床的数控系统设计各有千秋，但不管..."
+                    android:lineSpacingExtra="5dp"
+            />
+            <TextView
+                    android:id="@+id/date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/content3"
+                    android:layout_toRightOf="@id/i3"
+                    android:text="2019-05-17"
+                    android:lineSpacingExtra="5dp"
+            />
+
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/layout_border">
+
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/news_4"
+                    android:id="@+id/i4"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ti4"
+                    android:text="线切开机床的误差是指什么？"
+                    android:textColor="#000"
+                    android:textSize="25dp"
+                    android:layout_toRightOf="@id/i4"/>
+
+            <TextView
+                    android:id="@+id/content4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/ti4"
+                    android:layout_toRightOf="@id/i4"
+                    android:text="这个差距或许来自机床精度，或许来自材料的变形..."
+                    android:lineSpacingExtra="5dp"
+            />
+            <TextView
+                    android:id="@+id/date4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/content4"
+                    android:layout_toRightOf="@id/i4"
+                    android:text="2019-01-18"
+                    android:lineSpacingExtra="5dp"
+            />
+        </RelativeLayout>
     </LinearLayout>
-
-    <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-        <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
-                android:src="@drawable/weixin"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="110dp"
-                android:layout_toLeftOf="@+id/weixin_on_recharge"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:text="微信"/>
-        <RadioButton
-                android:id="@+id/weixin_on_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="45dp"
-                android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <Button
-                android:id="@+id/pay_on_recharge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/btn_my"
-                android:textColor="#fff"
-                android:text="充值"/>
-    </RelativeLayout>
-
-</LinearLayout>
+</ScrollView>

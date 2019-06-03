@@ -37,17 +37,25 @@ public class Http {
     }
 
     public static String cutStringTitle(String string) {
-        if (string.length() > 22)
-            return string.substring(0, 22) + "...";
+        if (string.length() > 15)
+            return string.substring(0, 15) + "...";
         else
             return string;
     }
     public static String cutStringContent(String string) {
-        if (string.length() > 54)
-            return string.substring(0, 54) + "...";
+        if (string.length() > 45)
+            return string.substring(0, 45) + "...";
         else
             return string;
     }
+
+    public static String cutStringMiddle(String string) {
+        if (string.length() > 12)
+            return string.substring(0, 12) + "...";
+        else
+            return string;
+    }
+
     public static String cutStringSmall(String string) {
         if (string.length() > 5)
             return string.substring(0, 5) + "...";

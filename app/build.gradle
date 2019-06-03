@@ -27,6 +27,18 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    
+    sourceSets {
+        main {
+            jniLibs.srcDir(['libs'])
+        }
+    }
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
+    
 }
 
 dependencies {
@@ -43,7 +55,16 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.leon:lfilepickerlibrary:1.7.0'
 
-
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation 'com.github.michaelye.easydialog:easydialog:1.4'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.github.ForgetAll:LoadingDialog:v1.1.2'
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
+    implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    implementation 'com.wenwenwen888:searchbox:1.0.1'
+    implementation 'com.wx.goodview:goodview:1.0.0'
+    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

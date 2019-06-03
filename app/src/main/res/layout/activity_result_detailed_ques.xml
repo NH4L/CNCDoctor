@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_onrelasetask"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fff"
+            android:gravity="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:id="@+id/back_to_result_ques"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_back_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:text="详情"
+                android:textColor="#000"
+                android:textSize="25sp" />
+        </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.CardView
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            app:cardCornerRadius="20dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="详细解决方案"
+                    android:textSize="25dp"
+                    android:textColor="#000"
+                    android:textAlignment="center" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="置信度："
+                    android:layout_marginLeft="170dp"
+                    android:layout_marginTop="50dp"/>
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/precentage_ques"
+                android:text="0.55"
+                android:layout_marginLeft="225dp"
+                android:layout_marginTop="50dp"
+                />
+            </RelativeLayout>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="220dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:id="@+id/solution_ques"
+                android:text="解决方案"
+                android:textSize="20dp"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/good_ques"
+                android:layout_marginTop="310dp"
+                android:layout_marginLeft="50dp"
+                android:onClick="good"
+                android:src="@drawable/good"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/bookmark_ques"
+                android:layout_marginTop="310dp"
+                android:layout_marginLeft="230dp"
+                android:onClick="bookmark"
+                android:src="@drawable/bookmark"/>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</FrameLayout>
