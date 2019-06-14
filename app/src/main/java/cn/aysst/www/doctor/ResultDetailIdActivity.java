@@ -1,6 +1,7 @@
 package cn.aysst.www.doctor;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -35,11 +36,15 @@ public class ResultDetailIdActivity extends Activity {
     private TextView typeText;
     private CNCProblem cnc;
 
-    private int i = 1;
+    private int goodFlag;
+    private int bookmarkFlag;
+    private ImageView good;
+    private ImageView bookmark;
+
 
     final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(500, TimeUnit.MILLISECONDS)
-            .readTimeout(500, TimeUnit.MILLISECONDS)
+            .connectTimeout(1000, TimeUnit.MILLISECONDS)
+            .readTimeout(1000, TimeUnit.MILLISECONDS)
             .build();
 
     @Override
@@ -58,48 +63,130 @@ public class ResultDetailIdActivity extends Activity {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
 
+        good = (ImageView)findViewById(R.id.good_id);
+        bookmark = (ImageView)findViewById(R.id.bookmark_id);
+
+        Log.d(Http.TAG, cnc.toString());
         brandText.setText(cnc.getBrand());
-        typeText.setText(cnc.getType());
+        typeText.setText(cnc.getSolutionDetail());
         solutionText.setText(cnc.getQuestionDetail());
-        SharedPreferences preferences = getSharedPreferences("userInfo", ResultDetailIdActivity.MODE_PRIVATE);
-        String username = preferences.getString("name", "");
-        saveHistory(username, cnc.getBrand(), cnc.getQuestion(), cnc.getSolution(), cnc.getType(), cnc.getQuestype());
+        SharedPreferences preferences1 = getSharedPreferences("userInfo", ResultDetailIdActivity.MODE_PRIVATE);
+        String username = preferences1.getString("name", "");
+
+        SharedPreferences preferences2 = getSharedPreferences("resultDetail", ResultDetailIdActivity.MODE_PRIVATE);
+        String temp = preferences2.getString(cnc.getQuestionDetail(), "");
+        System.out.println(temp + "------------------");
+        if (temp.equals("")) {
+            SharedPreferences.Editor editor = preferences2.edit();
+            editor.putString(cnc.getQuestionDetail(), "0#0");
+            editor.commit();//提交修改
+            Log.d(Http.TAG, "原来为空");
+        } else {
+            String a[] = temp.split("#");
+            if (a[0].equals("1")) {
+                goodFlag = 1;
+                good.setImageResource(R.drawable.good_checked);
+            } else {
+                goodFlag = 0;
+                good.setImageResource(R.drawable.good);
+            }
+
+            if (a[1].equals("1")) {
+                bookmarkFlag = 1;
+                bookmark.setImageResource(R.drawable.bookmark_checked);
+            } else {
+                bookmarkFlag = 0;
+                bookmark.setImageResource(R.drawable.bookmark);
+            }
+        }
+
+
+        saveHistory(username, cnc.getBrand(), cnc.getQuestionDetail(), cnc.getSolutionDetail(), cnc.getTypeDetail(), cnc.getQuestype());
 
         goodView = new GoodView(this);
         bookmarkView = new GoodView(this);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences preferences = getSharedPreferences("resultDetail", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (goodFlag == 0 && bookmarkFlag ==0) {
+            editor.putString(cnc.getQuestionDetail(), "0#0");
+            Log.d(Http.TAG, "最后是没点赞+没收藏");
+        } else if (goodFlag == 0 && bookmarkFlag ==1){
+            editor.putString(cnc.getQuestionDetail(), "0#1");
+            Log.d(Http.TAG, "最后是没点赞+收藏");
+        } else if (goodFlag == 1 && bookmarkFlag ==0) {
+            editor.putString(cnc.getQuestionDetail(), "1#0");
+            Log.d(Http.TAG, "最后是点赞+没收藏");
+        } else {
+            editor.putString(cnc.getQuestionDetail(), "1#1");
+            Log.d(Http.TAG, "最后是点赞+收藏");
+        }
+        editor.commit();//提交修改
+
+        finish();
+    }
+
     public void good(View view){
-        if(i==1) {
+        SharedPreferences preferences2 = getSharedPreferences("resultDetail", ResultDetailIdActivity.MODE_PRIVATE);
+        String temp = preferences2.getString(cnc.getQuestionDetail(), "");
+        String good[] = temp.split("#");
+        for (String i : good){
+            System.out.println(i + "##########");
+        }
+        Log.d(Http.TAG, good.length + "--------------------");
+        if (good[0].equals("0")) {
+            goodFlag = 1;
+        } else {
+            goodFlag = 0;
+        }
+
+
+        if(goodFlag == 1) {
             ((ImageView) view).setImageResource(R.drawable.good_checked);
             goodView.setText("+1");
             goodView.show(view);
-            i=0;
+            goodFlag = 1;
+
         } else {
             ((ImageView)view).setImageResource(R.drawable.good);
             goodView.setText("-1");
             goodView.show(view);
-            i=1;
+            goodFlag = 0;
+
         }
     }
 
     public void bookmark(View view){
-        if(i==1) {
+        SharedPreferences preferences1 = getSharedPreferences("resultDetail", ResultDetailIdActivity.MODE_PRIVATE);
+        String temp = preferences1.getString(cnc.getQuestionDetail(), "");
+        String bookmark[] = temp.split("#");
+        if (bookmark[1].equals("0"))
+            bookmarkFlag = 1;
+        else
+            bookmarkFlag = 0;
+
+        if(bookmarkFlag == 1) {
             ((ImageView) view).setImageResource(R.drawable.bookmark_checked);
-            goodView.setText("收藏成功");
-            goodView.show(view);
-            i=0;
+            bookmarkView.setText("收藏成功");
+            bookmarkView.show(view);
+            goodFlag = 1;
         } else {
             ((ImageView)view).setImageResource(R.drawable.bookmark);
-            goodView.setText("-1");
-            goodView.show(view);
-            i=1;
+            bookmarkView.setText("取消");
+            bookmarkView.show(view);
+            goodFlag = 0;
         }
     }
+
+
 
     public void saveHistory(String username, String brand, String question, String solution, String type, String questype) {
         JSONObject object = new JSONObject();
@@ -144,7 +231,6 @@ public class ResultDetailIdActivity extends Activity {
             }
         }
     }
-
     private String httpPostInsSaveReq(String object) {
         String result = "fail";
         FormBody body = new FormBody.Builder()

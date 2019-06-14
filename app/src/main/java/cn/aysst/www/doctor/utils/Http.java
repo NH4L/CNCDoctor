@@ -5,10 +5,10 @@ import java.security.PublicKey;
 
 public class Http {
     public static String TAG = "打印 TAG";
-    public static String BASE_URL = "http://192.168.43.197:8080";
-//    public static String BASE_URL = "https://www.aysst.cn";
-    //public static String BASE_IP = "10.11.12.10";
-    public static String BASE_IP = "129.211.11.232";
+//    public static String BASE_URL = "http://192.168.43.197:8080";
+    public static String BASE_URL = "http://www.aysst.cn/cnc";
+    public static String BASE_IP = "192.168.43.197";
+//    public static String BASE_IP = "129.211.11.232";
     public static int BASE_PORT = 11000;
     //public static String FILESTORAGE_ADDR = "E:/HHU/SecondYear";//存储文件路径位置
     public static String FILESTORAGE_ADDR = "/usr/projects/aysst";//存储文件路径位置
@@ -37,8 +37,8 @@ public class Http {
     }
 
     public static String cutStringTitle(String string) {
-        if (string.length() > 15)
-            return string.substring(0, 15) + "...";
+        if (string.length() > 12)
+            return string.substring(0, 12) + "...";
         else
             return string;
     }

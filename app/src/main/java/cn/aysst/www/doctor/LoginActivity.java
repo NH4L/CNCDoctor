@@ -36,8 +36,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private DBHelper dbHelper;
     private TransitionView mAnimView;
     final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(500, TimeUnit.MILLISECONDS)
-            .readTimeout(500, TimeUnit.MILLISECONDS)
+            .connectTimeout(1000, TimeUnit.MILLISECONDS)
+            .readTimeout(1000, TimeUnit.MILLISECONDS)
             .build();
 
     @Override

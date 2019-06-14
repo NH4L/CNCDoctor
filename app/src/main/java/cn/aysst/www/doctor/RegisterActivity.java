@@ -30,8 +30,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     public EditText edit_username, edit_setpassword, edit_resetpassword, edit_email;
     private TextView text_to_login, text_click_yes;
     final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(500, TimeUnit.MILLISECONDS)
-            .readTimeout(500, TimeUnit.MILLISECONDS)
+            .connectTimeout(1000, TimeUnit.MILLISECONDS)
+            .readTimeout(1000, TimeUnit.MILLISECONDS)
             .build();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

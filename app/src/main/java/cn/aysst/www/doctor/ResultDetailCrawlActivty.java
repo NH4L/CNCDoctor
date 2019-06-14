@@ -15,7 +15,7 @@ import cn.aysst.www.doctor.utils.Http;
 import com.wx.goodview.GoodView;
 
 
-public class ResultDetailQuesActivty extends Activity {
+public class ResultDetailCrawlActivty extends Activity {
 
     private ImageView backImageView;
     private GoodView goodView;
@@ -23,25 +23,26 @@ public class ResultDetailQuesActivty extends Activity {
     private CNCProblem cnc;
     private TextView precentText;
     private TextView solutionText;
+    private TextView urlText;
 
     private int goodFlag;
     private int bookmarkFlag;
     private ImageView good;
     private ImageView bookmark;
 
-    private int i = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result_detailed_ques);
+        setContentView(R.layout.activity_result_detailed_crawl);
 
         Intent intent = getIntent();
         cnc = intent.getParcelableExtra(SearchAdapter.SEARCH_BY_QUES);//从碎片里获得任务类Task
 
-        precentText = (TextView) findViewById(R.id.precentage_ques);
-        solutionText = (TextView) findViewById(R.id.solution_ques);
+        precentText = (TextView) findViewById(R.id.precentage_crawl);
+        solutionText = (TextView) findViewById(R.id.solution_crawl);
+        urlText = (TextView) findViewById(R.id.crawl_url);
 
-        backImageView = (ImageView)findViewById(R.id.back_to_result_ques);
+        backImageView = (ImageView)findViewById(R.id.back_to_result_crawl);
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,10 +50,10 @@ public class ResultDetailQuesActivty extends Activity {
             }
         });
 
-        good = (ImageView)findViewById(R.id.good_ques);
-        bookmark = (ImageView)findViewById(R.id.bookmark_ques);
+        good = (ImageView)findViewById(R.id.good_crawl);
+        bookmark = (ImageView)findViewById(R.id.bookmark_crawl);
 
-        SharedPreferences preferences2 = getSharedPreferences("resultDetail", ResultDetailQuesActivty.MODE_PRIVATE);
+        SharedPreferences preferences2 = getSharedPreferences("resultDetail", ResultDetailCrawlActivty.MODE_PRIVATE);
         String temp = preferences2.getString(cnc.getQuestionDetail(), "");
         System.out.println(temp + "------------------");
         if (temp.equals("")) {
@@ -81,7 +82,7 @@ public class ResultDetailQuesActivty extends Activity {
 
         precentText.setText(cnc.getPercentage() + "");
         solutionText.setText(cnc.getQuestionDetail());
-
+        urlText.setText(cnc.getUrl());
         goodView = new GoodView(this);
         bookmarkView = new GoodView(this);
 
@@ -140,7 +141,7 @@ public class ResultDetailQuesActivty extends Activity {
     }
 
     public void bookmark(View view){
-        SharedPreferences preferences1 = getSharedPreferences("resultDetail", ResultDetailQuesActivty.MODE_PRIVATE);
+        SharedPreferences preferences1 = getSharedPreferences("resultDetail", ResultDetailCrawlActivty.MODE_PRIVATE);
         String temp = preferences1.getString(cnc.getQuestionDetail(), "");
         String bookmark[] = temp.split("#");
         if (bookmark[1].equals("0"))

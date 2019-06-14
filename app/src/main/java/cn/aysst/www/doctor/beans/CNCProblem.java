@@ -22,6 +22,7 @@ public class CNCProblem implements Parcelable {
     private String idDetail;
     private String questionDetail;
     private String typeDetail;
+    private String url;
 
 
 
@@ -116,6 +117,31 @@ public class CNCProblem implements Parcelable {
         return typeDetail;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    public String getUrl() {
+        return url;
+    }
+
+    @Override
+    public String toString() {
+        return "brand: " + brand + "\n" +
+                "type: " + type + "\n" +
+                "question: " + question + "\n" +
+                "questype: " + questype + "\n" +
+                "solution: " + solution + "\n" +
+                "time: " + time + "\n" +
+                "percentage: " + percentage + "\n" +
+                "searchType: " + searchType + "\n" +
+                "id: " + id + "\n" +
+                "solutionDetail: " + solutionDetail + "\n" +
+                "idDetail: " + idDetail + "\n" +
+                "questionDetail: " + questionDetail + "\n" +
+                "typeDetail: " + typeDetail + "\n" +
+                "url: " + url;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CNCProblem){
@@ -148,6 +174,7 @@ public class CNCProblem implements Parcelable {
         dest.writeString(solutionDetail);
         dest.writeString(typeDetail);
         dest.writeString(idDetail);
+        dest.writeString(url);
     }
 
     public static final Parcelable.Creator<CNCProblem> CREATOR = new Parcelable.Creator<CNCProblem>(){
@@ -167,6 +194,7 @@ public class CNCProblem implements Parcelable {
             cnc.setQuestionDetail(source.readString());
             cnc.setSolutionDetail(source.readString());
             cnc.setTypeDetail(source.readString());
+            cnc.setUrl(source.readString());
             return cnc;
         }
 

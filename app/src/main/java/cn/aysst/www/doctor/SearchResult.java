@@ -15,8 +15,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
-import java.io.IOException;
+import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.Socket;
 import java.net.URLDecoder;
+import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
@@ -45,6 +50,8 @@ public class SearchResult extends Activity {
     private TextView crawlAgainText;
     private CircularProgressView cpv;
     private LoadingDialog ld;
+    private int number = 0;
+
     final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(20000, TimeUnit.MILLISECONDS)
             .readTimeout(20000, TimeUnit.MILLISECONDS)
@@ -63,34 +70,26 @@ public class SearchResult extends Activity {
             }
         });
         crawlAgainText = (TextView) findViewById(R.id.crawl_again);
-       recyclerView = (RecyclerView)findViewById(R.id.recycler_view_search_page);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view_search_page);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         layoutManager = new GridLayoutManager(this,1);
         adapter = new SearchAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-        ld = new LoadingDialog(this)
-        .setLoadingText("爬取中....")
-        .setSuccessText("爬取成功")
-        .setShowTime(2000);
+        ld = new LoadingDialog(this).setLoadingText("爬取中....").setSuccessText("爬取成功").setShowTime(2000);
         CNCProblem cnc = new CNCProblem();
         Intent intent = getIntent();
         int searchType = intent.getIntExtra("searchType", 0);
-
+        Log.d(Http.TAG, "+++++++++++" + intent.getStringExtra("question") + "___________________");
         crawlAgainText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // cpv.setVisibility(View.VISIBLE);
                 adapter.clean();
-
                 ld.show();
-
                 ld.loadSuccess();
-                crawlAgain("爬虫查询");
-
-                //
-//  cpv.setVisibility(View.INVISIBLE);
+//                crawlAgain(cnc.getQuestion(), number);
+                crawlAgain((String) intent.getStringExtra("question"), number);
             }
         });
 
@@ -152,24 +151,91 @@ public class SearchResult extends Activity {
 
 
     }
+    public static double format2(double value) {
 
-    private void crawlAgain(String searchType) {
-        adapter.clean();
-
-        CNCProblem cnc = new CNCProblem();
-        cnc.setSolution("纠正SDB 类型 -2000 关闭...");
-        cnc.setSolutionDetail("纠正SDB 类型 -2000 关闭/ 打开系统。");
-        cnc.setPercentage(0.88);
-        cnc.setSearchType(searchType);
-        adapter.addItem(cnc);
-
-        CNCProblem cnc2 = new CNCProblem();
-        cnc2.setSolution("在未被系统占用的指定机床数据中...");
-        cnc2.setSolutionDetail("在未被系统占用的指定机床数据中配置一个 M 功能( M0 到 M5、M17、M30、M40 到 M45 以及利用实用ISO 非标准语言的 M98、 M99)。 用复位键清除报警。");
-        cnc2.setPercentage(0.34);
-        cnc2.setSearchType(searchType);
-        adapter.addItem(cnc2);
-
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return Double.parseDouble(bd.toString());
     }
+    private void crawlAgain(String question, int number) {
+        adapter.clean();
+        new CrawlSolutionBySocketAsyncTask().execute(number + "0", question);
+    }
+
+    class CrawlSolutionBySocketAsyncTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            return crawlOnSocket(params[0], params[1]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONArray info = obj.getJSONArray("answer");
+                for (int i=0; i<obj.getInt("answercount"); i++) {
+                    JSONObject object = (JSONObject) info.get(i);
+                    CNCProblem cnc = new CNCProblem();
+                    cnc.setSolution(Http.cutStringTitle(object.getString("content")));
+                    cnc.setSolutionDetail(object.getString("title") + object.getString("content"));
+                    cnc.setPercentage(format2(0.9 - i * 0.11));
+                    cnc.setSearchType("爬虫查询");
+                    cnc.setUrl(object.getString("url"));
+                    Thread.sleep(400);
+                    adapter.addItem(cnc);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            number ++;
+        }
+    }
+
+    private String crawlOnSocket(String number, String keyword) {
+        String result = "fail";
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("count", number);
+            obj.put("keyword", keyword);
+
+            Socket socket = new Socket(Http.BASE_IP, Http.BASE_PORT);
+            //获取输出流，向服务器端发送信息
+            OutputStream os = socket.getOutputStream();//字节输出流
+            PrintWriter out = new PrintWriter(os);//将输出流包装为打印流
+            out.write(obj.toString());
+            out.flush();
+            socket.shutdownOutput();//关闭输出流
+
+            InputStream is = socket.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(is));
+            result = in.readLine();
+
+//            while((info=in.readLine())!=null){
+//                //System.out.println("我是客户端，Python服务器说："+info);
+//                Log.d("MAIN","我是客户端，Python服务器说："+info);
+//                Message msg = new Message();
+//                Bundle data = new Bundle();
+//                data.putString("value","我是客户端，Python服务器说："+info);
+//                msg.setData(data);
+//            }
+            is.close();
+            in.close();
+            socket.close();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 }

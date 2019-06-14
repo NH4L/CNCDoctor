@@ -36,22 +36,19 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:theme="@style/AppTheme">
         <activity android:name="cn.aysst.www.doctor.LoginActivity">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-             </intent-filter>
-
-
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.aysst.www.doctor.MainActivity"
                 android:label="数控小医生"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
         <activity android:name="cn.aysst.www.doctor.HomepageActivity"
             android:theme="@style/AppTheme"/>
@@ -84,6 +81,7 @@
         <activity android:name="cn.aysst.www.doctor.ResultDetailQuesActivty" />
         <activity android:name="cn.aysst.www.doctor.SearchResult" />
         <activity android:name="cn.aysst.www.doctor.CollectActivity" />
+        <activity android:name="cn.aysst.www.doctor.NewsDetailActivity" />
     </application>
 
 </manifest>

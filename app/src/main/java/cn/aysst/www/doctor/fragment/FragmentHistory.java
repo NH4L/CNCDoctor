@@ -32,8 +32,8 @@ import java.util.concurrent.TimeUnit;
 
 public class FragmentHistory extends Fragment {
 	final OkHttpClient client = new OkHttpClient.Builder()
-			.connectTimeout(500, TimeUnit.MILLISECONDS)
-			.readTimeout(500, TimeUnit.MILLISECONDS)
+			.connectTimeout(1000, TimeUnit.MILLISECONDS)
+			.readTimeout(1000, TimeUnit.MILLISECONDS)
 			.build();
     private RecyclerView recyclerView;
     private MyHistoryAdapter adapter;

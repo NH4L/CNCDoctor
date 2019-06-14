@@ -162,7 +162,8 @@ public class MainActivity extends AppCompatActivity
 //        Intent intent = getIntent();
 //        account = intent.getStringExtra("account");
         account = "lcy";
-        user_json = httpPostUserinfoReq(account);
+//        user_json = httpPostUserinfoReq(account);
+        user_json = "{\"name\":\"lcy\",\"email\":\"lcy@qq.com\",\"money\":5129.5,\"sex\":\"女\",\"phone\":\"15995028879\",\"signature\":\"今天很开心\",\"portraitAddr\":\"http://www.aysst.cn/files/images/lcy/2/6/BA60VROIYP62P17UWLQAUPZKMU5KFWC1.jpg\"}";
         Log.d("user", user_json);
         try {
             JSONObject jsonObject = new JSONObject(user_json);

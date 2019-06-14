@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import cn.aysst.www.doctor.Adapter.homeGridAdapter;
+import cn.aysst.www.doctor.NewsDetailActivity;
 import cn.aysst.www.doctor.R;
 
 import android.os.Bundle;
@@ -191,49 +192,48 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
 
                     if (!(question.equals(",,##"))){
                         // TODO 待实现输入无意义词让用户重新输入
-                        if (question.equals("西门子SDB类型2000的DP脉冲出错")) {
-                            String data = "{\n" +
-                                    "    \"problem0\": {\n" +
-                                    "        \"solution\": \"补救措施取决于存取权限和 NCK 的当前存储器扩展容量,增加容量即可。\",\n" +
-                                    "        \"percentage\": 0.5773502691896257\n" +
-                                    "    },\n" +
-                                    "    \"problem1\": {\n" +
-                                    "        \"solution\": \"报警显示可以利用重置来取消。关闭/ 打开系统。\",\n" +
-                                    "        \"percentage\": 0.4714045207910316\n" +
-                                    "    },\n" +
-                                    "    \"problem2\": {\n" +
-                                    "        \"solution\": \"请通知授权人员 / 维修部门。选择一个系统尚末使用的字符串用于输入标识符 ( 最多 32 个字符）。关闭/ 打开系统。\",\n" +
-                                    "        \"percentage\": 0.3849001794597505\n" +
-                                    "    },\n" +
-                                    "    \"problem3\": {\n" +
-                                    "        \"solution\": \"没有 用清除键或NC- 启动 键清除报警\",\n" +
-                                    "        \"percentage\": 0.3849001794597505\n" +
-                                    "    },\n" +
-                                    "    \"problem4\": {\n" +
-                                    "        \"solution\": \"分析和确定其它报警并再次起动该控制器。 关闭/ 打开系统。\",\n" +
-                                    "        \"percentage\": 0.3333333333333333\n" +
-                                    "    },\n" +
-                                    "    \"question\": \"西门子SDB类型2000的DP脉冲出错\"\n" +
-                                    "}";
-
-                            Intent intent = new Intent(getActivity(), SearchResult.class);
-                            intent.putExtra("searchType", 1);
-                            intent.putExtra("solution", data);
-                            intent.putExtra("time", "2019-5-29");
-                            startActivity(intent);
-                        } else {
-                            findSolutionByQues(question);
-                        }
+                        findSolutionByQues(question);
                     } else {
                         Toast.makeText(getContext(), "请输入有意义的问题", Toast.LENGTH_SHORT).show();
                     }
 
-//                Intent intent = new Intent(getActivity(), SearchResult.class);
-//                startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), "请输入问题", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        t6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                intent.putExtra("url","http://new.haiwell.com/solution/733-cn.html");
+                startActivity(intent);
+            }
+        });
+        t7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
+                intent.putExtra("url","http://www.ca800.com/apply/d_1o18s0esa2p81_1.html");
+                startActivity(intent);
+            }
+        });
+        t8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
+                intent.putExtra("url","http://www.bethel-cnc.com/bethel/news/show_2356.html");
+                startActivity(intent);
+            }
+        });
+        t9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
+                intent.putExtra("url","http://www.bethel-cnc.com/bethel/news/show_1543.html");
+                startActivity(intent);
             }
         });
 
@@ -418,30 +418,34 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
                     Log.d(Http.TAG, "code=" + code + ", msg=" + msg);
                     JSONObject data = obj.getJSONObject("data");
                     Log.d(Http.TAG, data.toString());
-                    if (code == 0 && msg.equals("success") && (!(data.getString("problem") == null))) {
-                        String problem = data.getString("problem");
+                    if (code == 0 && msg.equals("success")) {
+                        if (!(data.getString("problem") == null)) {
+                            String problem = data.getString("problem");
 
-                        String solution = data.getString("solution");
-                        String type = data.getString("type");
-                        String brand = data.getString("brand");
-                        String questype = data.getString("questype");
-                        String id = data.getString("id");
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//查询时间
-                        String time = df.format(new Date());
+                            String solution = data.getString("solution");
+                            String type = data.getString("type");
+                            String brand = data.getString("brand");
+                            String questype = data.getString("questype");
+                            String id = data.getString("id");
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//查询时间
+                            String time = df.format(new Date());
 
-                        Intent intent = new Intent(getActivity(), SearchResult.class);
-                        intent.putExtra("searchType", 0);
-                        intent.putExtra("problem", problem);
-                        intent.putExtra("type", type);
-                        intent.putExtra("solution", solution);
-                        intent.putExtra("brand", brand);
-                        intent.putExtra("questype", questype);
-                        intent.putExtra("id", id);
-                        intent.putExtra("time", time);
-                        startActivity(intent);
+                            Intent intent = new Intent(getActivity(), SearchResult.class);
+                            intent.putExtra("searchType", 0);
+                            intent.putExtra("problem", problem);
+                            intent.putExtra("type", type);
+                            intent.putExtra("solution", solution);
+                            intent.putExtra("brand", brand);
+                            intent.putExtra("questype", questype);
+                            intent.putExtra("id", id);
+                            intent.putExtra("time", time);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getActivity(), "输入故障代码或故障类型有误，请重新输入查询!", Toast.LENGTH_SHORT).show();
+                        }
 
                     } else {
-                        Toast.makeText(getActivity(), "输入故障代码或故障类型有误，请重新输入查询!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "目前网络繁忙，请稍后重试!", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -489,6 +493,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
                         intent.putExtra("searchType", 1);
                         intent.putExtra("solution", data.toString());
                         intent.putExtra("time", time);
+                        intent.putExtra("question", question);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getActivity(), "查询繁忙,请稍后重试", Toast.LENGTH_SHORT).show();
